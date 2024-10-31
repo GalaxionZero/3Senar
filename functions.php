@@ -183,8 +183,11 @@
 
     function deleteProduk($id){
         $conn = connection();
-        $query = "DELETE FROM products WHERE id=$id; DELETE FROM product_details WHERE id_product=$id";
-        if(mysqli_multi_query($conn, $query)){
+        $query1 = "DELETE FROM product_details WHERE id_product = $id";
+        mysqli_query($conn, $query1);
+        $query2 = "DELETE FROM products WHERE id = $id";
+        
+        if (mysqli_query($conn, $query2)) {
             return true;
         } else {
             return false;
