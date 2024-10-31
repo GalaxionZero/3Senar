@@ -1,25 +1,13 @@
 <?php
-    require 'koneksi.php';
+    require 'functions.php';
 
-    $query = "SELECT * FROM products ORDER BY id DESC";
-    $result = mysqli_query($conn, $query);
+    // if(!checkSession()){
+    //     header("Location: login.php");
+    //     exit;
+    // }
 
-    $list_products = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $list_products[] = $row;
-    }
-
-
-    if(isset($_POST["keyword"])) {
-        $keyword = $_POST["keyword"];
-
-        $sql = mysqli_query($conn, "SELECT * FROM products WHERE nama LIKE '%$keyword%' ");
-    
-        $list_products = [];
-        while ($row = mysqli_fetch_assoc($sql)) {
-            $list_products[] = $row;
-        }
-    }
+    $conn = connection();
+    $list_products = tampilProduk();
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +49,7 @@
                         <th class="table-admin-header">Barang</th>
                         <th class="table-admin-header">Harga</th>
                         <th class="table-admin-header">Stock</th>
+                        <th class="table-admin-header">Kategori</th>
                         <th class="table-admin-header">Deskripsi</th>
                         <th class="table-admin-header">Foto</th>
                     </tr>
@@ -72,8 +61,9 @@
                             <td><?php echo $products['nama']; ?></td>
                             <td><?php echo $products['harga']; ?></td>
                             <td><?php echo $products['stok']; ?></td>
+                            <td><?php echo $products['kategori']; ?></td>
                             <td><?php echo $products['deskripsi']; ?></td>
-                            <td><img src="images/<?php echo $products['foto']; ?>" alt="<?php $products['foto']?>" width="80%" height="100px" style="display: block; margin:0 auto;"></td>
+                            <td><img src="img/<?php echo $products['foto']; ?>" alt="<?php $products['foto']?>" width="80%" height="100px" style="display: block; margin:0 auto;"></td>
                             <td>
                                 <div class="button-container">
                                     <a href="edit_barang.php?id=<?php echo $products['id']?>">

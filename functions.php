@@ -76,11 +76,11 @@
         }
     }
 
-    function upload(){
-        $namaFile = $_FILES['foto']['name'];
-        $ukuranFile = $_FILES['foto']['size'];
-        $error = $_FILES['foto']['error'];
-        $tmpName = $_FILES['foto']['tmp_name'];
+    function upload($data){
+        $namaFile = $data['fotoName'];
+        $ukuranFile = $data['fotoSize'];
+        $error = $data['fotoError'];
+        $tmpName = $data['fotoTmp'];
 
         if($error === 4){
             echo "<script>alert('Pilih gambar terlebih dahulu')</script>";
@@ -108,26 +108,32 @@
         return $namaFileBaru;
     }
 
-    function tambahProduk(){
+    function tambahProduk($data){
         $conn = connection();
-        $nama = $_POST['nama'];
-        $harga = $_POST['harga'];
-        $deskripsi = $_POST['deskripsi'];
-        $stok = $_POST['stok'];
-        $kategori = $_POST['kategori'];
-        $foto = upload();
+        $nama = $data['nama'];
+        $harga = $data['harga'];
+        $deskripsi = $data['deskripsi'];
+        $stok = $data['stok'];
+        $kategori = $data['kategori'];
+        $foto = upload($data);
 
         if(!$foto){
             return false;
         }
 
-        $query = "INSERT INTO products (nama) VALUES ('$nama'); INSERT INTO product_details (harga, deskripsi, stok, foto, kategori) VALUES ('$harga', '$deskripsi', '$stok', '$foto', $kategori);";
+        $query1 = "INSERT INTO products (nama) VALUES ('$nama')";
 
-        if(mysqli_multi_query($conn, $query)){
-            return true;
-        } else {
-            return false;
+        if (mysqli_query($conn, $query1)) {
+            $id_product = mysqli_insert_id($conn);
+
+            $query2 = "INSERT INTO product_details (id_product, harga, deskripsi, stok, foto, kategori) 
+                       VALUES ('$id_product', '$harga', '$deskripsi', '$stok', '$foto', '$kategori')";
+    
+            if (mysqli_query($conn, $query2)) {
+                return true;
+            }
         }
+        return false;
     }
 
     function tampilProduk(){
@@ -152,7 +158,7 @@
         return $data;
     }
 
-    function updateProduk(){
+    function updateProduk($data){
         $conn = connection();
         $id = $_POST['id'];
         $nama = $_POST['nama'];
@@ -160,7 +166,7 @@
         $deskripsi = $_POST['deskripsi'];
         $stok = $_POST['stok'];
         $kategori = $_POST['kategori'];
-        $foto = upload();
+        $foto = upload($data);
 
         if(!$foto){
             return false;
