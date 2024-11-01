@@ -1,87 +1,31 @@
 <?php
-require 'koneksi.php';
+    require 'functions.php';
+    $id = $_GET['id'];
+    $conn = connection();
 
-$id = $_GET['id'];
-$query = "SELECT * FROM products WHERE id = $id";
-$result = mysqli_query($conn, $query);
+    if (isset($_POST['tambah'])){
+        $data['nama'] = $_POST['nama'];
+        $data['harga'] = $_POST['harga'];
+        $data['deskripsi'] = $_POST['deskripsi'];
+        $data['stok'] = $_POST['stok'];
+        $data['kategori'] = $_POST['kategori'];
+        $data['fotoName'] = $_FILES['foto']['name'];
+        $data['fotoSize'] = $_FILES['foto']['size'];
+        $data['fotoTmp'] = $_FILES['foto']['tmp_name'];
+        $data['fotoError'] = $_FILES['foto']['error'];
 
-$products = [];
-while($row = mysqli_fetch_assoc($result)) {
-    $products[] = $row;
-}
-
-$products = $products[0];
-
-if (isset($_POST['tambah'])) {
-    $nama = $_POST['nama'];
-    $harga = $_POST['harga'];
-    $stok = $_POST['stok'];
-    $deskripsi = $_POST['deskripsi'];
-
-    $oldimg = $_POST['oldimg'];
-
-    if($_FILES['foto']['error'] === 4) {
-        $file_name = $oldimg;
-
-    } else {
-        $tmp_name = $_FILES['foto']['tmp_name'];
-        $file_name = $_FILES['foto']['name'];
-        $file_size = $_FILES['foto']['size'];
-
-        $maxFileSize = 4 * 1024 *1024;
-        
-
-        $validExtension = ['jpg','jpeg','png','webp'];
-        $fileExtension = explode('.', $file_name);
-        $fileExtension = strtolower(end($fileExtension));
-
-        if (!in_array($fileExtension, $validExtension)){
+        if (updateProduk($data, $id)){
             echo "<script>
-                alert('File yang di Upload Bukan Gambar');
-                document.location.href = 'tambah_barang.php';
+                alert('Data berhasil diperbarui');
+                document.location.href = 'admin_list_barang.php';
             </script>";
-            exit;
-        } elseif ($file_size > $maxFileSize) {
-            echo "<script>
-                alert('Ukuran file gambar tidak boleh lebih dari 4 MB.');
-                document.location.href = 'edit_barang.php';
-            </script>";
-            exit;
-
         } else {
-            $new_file_name = date('Y-m-d H.i.s') . '.' . $fileExtension;
-
-            if (file_exists('images/' . $oldimg)) {
-                unlink('images/' . $oldimg);
-            }
-            
-            if (!move_uploaded_file($tmp_name, 'images/' . $new_file_name)) {
-                
-                echo "<script>
-                alert('Gagal meng-upload gambar');
-                document.location.href = 'tambah_barang.php';
-                </script>";
-            }
-            $file_name = $new_file_name;
+            echo "<script>
+                alert('Data gagal diperbarui');
+                document.location.href = 'admin_list_barang.php';
+            </script>";
         }
     }
-    // if (move_uploaded_file($_FILES['foto']['tmp_name'], $target_file)) {
-    $query = "UPDATE products SET nama='$nama', harga='$harga', stok='$stok' , deskripsi='$deskripsi', foto='$file_name' WHERE id=$id ";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        echo "<script>
-        alert('Data berhasil diperbarui');
-        document.location.href = 'admin_list_barang.php';
-        </script>";
-    } else {
-        echo "<script>
-        alert('Data gagal diperbarui');
-        document.location.href = 'admin_list_barang.php';
-        </script>";
-    }
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -111,6 +55,9 @@ if (isset($_POST['tambah'])) {
 
                     <label for="deskripsi">deskripsi</label><br>
                     <textarea id="deskripsi" name="deskripsi" required><?php echo htmlspecialchars($products['deskripsi']); ?>" </textarea><br>
+                    
+                    <label for="kategori">kategori</label><br>
+                    <textarea id="kategori" name="kategori" required><?php echo htmlspecialchars($products['deskripsi']); ?>" </textarea><br>
 
                     <label for="foto">Foto</label><br>
                     <input type="hidden" name="oldimg" value="<?php echo htmlspecialchars($products['foto']); ?>">

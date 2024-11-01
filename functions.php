@@ -87,7 +87,7 @@
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'webp'];
         $ekstensiGambar = explode('.', $namaFile);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if(!in_array($ekstensiGambar, $ekstensiGambarValid)){
@@ -158,9 +158,8 @@
         return $data;
     }
 
-    function updateProduk($data){
+    function updateProduk($data, $id){
         $conn = connection();
-        $id = $_POST['id'];
         $nama = $_POST['nama'];
         $harga = $_POST['harga'];
         $deskripsi = $_POST['deskripsi'];
@@ -172,10 +171,15 @@
             return false;
         }
 
-        $query = "UPDATE products SET nama='$nama' WHERE id=$id; UPDATE product_details SET harga='$harga', deskripsi='$deskripsi', stok='$stok', foto='$foto', kategori='$kategori' WHERE id_product=$id";
+        $query1 = "UPDATE products SET nama='$nama' WHERE id=$id;";
+        $query2 = "UPDATE product_details SET harga='$harga', deskripsi='$deskripsi', stok='$stok', foto='$foto', kategori='$kategori' WHERE id_product=$id";
 
-        if(mysqli_multi_query($conn, $query)){
-            return true;
+        if(mysqli_multi_query($conn, $query1)){
+            if(mysqli_multi_query($conn, $query2)){
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
