@@ -1,10 +1,14 @@
 <?php
-session_start();
-require "koneksi.php";
+    session_start();
+    require 'functions.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if (!isset($_GET['id'])) {
+        header("Location: index.php");
+        exit;
+    } else {
+        $id = $_GET['id'];
+        $data = tampilProdukById($id);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,23 +28,17 @@ if ($conn->connect_error) {
 
 <div class="container">
         <div class="imgBx">
-            <img src="images\revstar.png" alt="Revstar Image">
+            <img src="img/<?php echo $data[0]['foto']?>" alt="<?php echo $data[0]['foto']?>">
         </div>
         <div class="details">
             <div class="content">
-                <h2>REVSTAR<br>
-                    <span>Yamaha Series</span>
+                <h2><?php echo htmlspecialchars($data[0]['nama'])?><br>
+                    <span><?php echo htmlspecialchars($data[0]['kategori'])?></span>
                 </h2>
                 <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Nam ultrices commodo justo, at egestas erat consequat sed. 
-                Praesent ac pulvinar tellus. Aenean iaculis tellus eu erat dictum ultricies. 
-                Integer vestibulum molestie ante, quis congue risus aliquet sit amet. 
-                Integer tincidunt non arcu sit amet fringilla. 
-                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                Phasellus porta luctus dui, ac dignissim felis gravida id. Nullam vel lorem eget velit porttitor blandit.
+                    <?php echo htmlspecialchars($data[0]['deskripsi'])?>
                 </p>
-                <h3>Rp.6.000.000-Rp.12.000.000.</h3>
+                <h3><?php echo htmlspecialchars($data[0]['harga'])?></h3>
             </div>
         </div>
         <div class="container2">

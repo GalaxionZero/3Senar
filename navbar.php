@@ -17,7 +17,7 @@
     <!--Search-->   
     <div class="navbar-search">
         <form action="search.php" method="GET">
-            <input type="text" placeholder="Cari: senar, gitar, capo..." class="search-input">
+            <input type="text" placeholder="Cari: senar, gitar, capo..." class="search-input" name="search-input">
             <button class="search-button">Search</button>
         </form>
     </div>

@@ -139,7 +139,7 @@
 
     function tampilProduk(){
         $conn = connection();
-        $query = "SELECT * FROM products JOIN product_details ON products.id = product_details.id_product";
+        $query = "SELECT * FROM products";
         $result = mysqli_query($conn, $query);
         $data = [];
         while($row = mysqli_fetch_assoc($result)){
@@ -151,6 +151,28 @@
     function tampilProdukByName($string){
         $conn = connection();
         $query = "SELECT * FROM products JOIN product_details ON products.id = product_details.id_product WHERE nama LIKE '%$string%'";
+        $result = mysqli_query($conn, $query);
+        $data = [];
+        while($row = mysqli_fetch_assoc($result)){
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    function tampilProdukByKategori($string){
+        $conn = connection();
+        $query = "SELECT * FROM products JOIN product_details ON products.id = product_details.id_product WHERE kategori LIKE '$string%'";
+        $result = mysqli_query($conn, $query);
+        $data = [];
+        while($row = mysqli_fetch_assoc($result)){
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    function tampilProdukById($id){
+        $conn = connection();
+        $query = "SELECT * FROM products JOIN product_details ON products.id = product_details.id_product WHERE products.id = $id";
         $result = mysqli_query($conn, $query);
         $data = [];
         while($row = mysqli_fetch_assoc($result)){

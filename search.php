@@ -1,21 +1,12 @@
 <?php
-session_start();
-require "koneksi.php";
+    session_start();
+    require 'functions.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $searchQuery = isset($_GET['search-input']) ? $_GET['search-input'] : '';
 
-// Get the search query from the URL
-$searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
+    $data = array_merge(tampilProdukByName($searchQuery), tampilProdukByKategori($searchQuery));
 
-// Prepare the SQL statement
-$sql = "SELECT * FROM products WHERE nama LIKE ?";
-$stmt = $conn->prepare($sql);
-$searchTerm = "%" . $searchQuery . "%";
-$stmt->bind_param('s', $searchTerm);
-$stmt->execute();
-$result = $stmt->get_result();
+    $data = array_unique($data, SORT_REGULAR);
 ?>
 
 <!DOCTYPE html>
@@ -28,38 +19,36 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <!--Navbar-->
     <?php include("navbar.php")
     ?>
-<main>
+    <main>
         <h1 class="content-title">Hasil Pencarian:</h1>
-        <div class="maincontainer4">
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <div class="container">
-                        <img src="/projectakhir/Posttest7/images/<?php echo htmlspecialchars($row['foto']); ?>" alt="<?php echo htmlspecialchars($row['nama']); ?>">
-                        <div class="overlay">
-                            <div class="items"></div>
-                            <div class="items head">
-                                <p><span><?php echo htmlspecialchars($row['nama']); ?></span></p>
-                                <hr>
-                            </div>
-                            <div class="items price">
-                                <br>
-                                <p class="new">$<?php echo htmlspecialchars($row['harga']); ?></p>
-                            </div>
-                            <a href="productpage.php" class ="cart">Check here!</a>
+        
+        <?php if(count($data) === 0) : ?>
+            <h1 class="content-title">Produk tidak ditemukan</h1>
+        <?php else : ?>
+            <?php foreach($data as $data) : ?>
+            <div class="maincontainer4">
+                <div class="container">
+                    <img src="img/<?php echo $data['foto'] ?>" alt="<?php echo $data['foto']?>">
+                    <div class="overlay">
+                        <div class="items"></div>
+                        <div class="items head">
+                            <p><span><?php echo htmlspecialchars($data['nama']); ?></span></p>
+                            <hr>
                         </div>
+                        <div class="items price">
+                            <br>
+                            <p class="new">$<?php echo htmlspecialchars($data['harga']); ?></p>
+                        </div>
+                        <a href="productpage.php?id=<?php echo $data['id']?>" class ="cart">Check here!</a>
                     </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>No results found for "<?php echo htmlspecialchars($searchQuery); ?>"</p>
-            <?php endif; ?>
-        </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </main>
-    <!--Footer-->
-    <?php require("footer.php")
-    ?>
+    <?php require("footer.php")?>
     <script src="scripts/script.js"></script> 
 </body>
 </html>
