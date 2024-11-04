@@ -197,4 +197,66 @@
             return false;
         }
     }
+
+    function tambahToko($data){
+        $conn = connection();
+        $nama = $data['nama'];
+        $alamat = $data['alamat'];
+        $no_tlp = $data['no_tlp'];
+        $foto = upload($data);
+
+        if(!$foto){
+            return false;
+        }
+
+        $query = "INSERT INTO stores (nama, alamat, no_tlp) VALUES ('$nama', '$alamat', '$no_tlp')";
+
+        if (mysqli_query($conn, $query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function tampilToko(){
+        $conn = connection();
+        $query = "SELECT * FROM stores";
+        $result = mysqli_query($conn, $query);
+        $data = [];
+        while($row = mysqli_fetch_assoc($result)){
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    function updateToko($data, $id){
+        $conn = connection();
+        $nama = $_POST['nama'];
+        $alamat = $_POST['alamat'];
+        $no_tlp = $_POST['no_tlp'];
+        $foto = upload($data);
+
+        if(!$foto){
+            return false;
+        }
+
+        $query = "UPDATE stores SET nama='$nama', alamat='$alamat', deskripsi='$no_tlp', foto='$foto' WHERE id=$id";
+
+        if (mysqli_query($conn, $query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function deleteToko($id){
+        $conn = connection();
+        $query = "DELETE FROM stores WHERE id = $id";
+        
+        if (mysqli_query($conn, $query)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 ?>
