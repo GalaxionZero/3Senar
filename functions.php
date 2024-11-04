@@ -1,10 +1,10 @@
 <?php
     function connection(){
         $conn = mysqli_connect('localhost:3307','root','','db_senar');
-    if(!$conn){
-        die('Connection failed'.mysqli_connect_error());
-    }
-    return $conn;
+        if(!$conn){
+            die('Connection failed'.mysqli_connect_error());
+        }
+        return $conn;
     }
 
     function register($data){
@@ -32,7 +32,8 @@
         $conn = connection();
         $username = $data['username'];
         $password = $data['password'];
-        $query = "SELECT * FROM sensei WHERE username='$username'";
+        $email = $data['email'];
+        $query = "SELECT * FROM users WHERE username='$username' AND email='$email'";
         $result = mysqli_query($conn, $query);
         if($data = mysqli_fetch_assoc($result)){
             if(password_verify($password, $data['password'])){

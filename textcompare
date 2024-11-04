@@ -1,0 +1,72 @@
+   <main class="main-section">
+        <div class="main-content">
+            <h1 class="content-title">Cari Sahabat Musik anda disini!</h1>
+            <div class="content-grid">
+                <div class="content-box">
+                    <img src="assets/content1.jpeg" alt="Content 1"/>
+                    <div class="title-box">
+                        <h2>New Star Kopitiam, Balikpapan </h2>
+                        <P> Berada di Penta Mall Balikpapan,Makanannya Enakk,tapi lumayan mahal</P>
+                    </div>
+                    <div class="main-border">
+                        <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>  
+                        <div class="rating-box">
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9734;</span> 
+                            <p class="rating-text">4 dari 5</p>
+                        </div>  
+                    </div>
+                </div>
+                <div class="content-box">
+                    <img src="assets/content2.jpeg" alt="Content 2"/>
+                    <div class="title-box">
+                        <h2>OngKopi Tea, Samarinda </h2>
+                        <P> Banyak pilihan menu makanan,Tempatnya bagus seperti vibe warung chinese</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="maincontainer4">
+        <?php
+        $totalCards = 12;
+        $productCount = mysqli_num_rows($result);
+        $currentCard = 0;
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="card3">
+                <div class="imgBox">
+                    <img src="asset/<?php echo $row['foto_produk']; ?>" alt="item">
+                </div>
+                <div class="contentBox">
+                    <h3><?php echo $row['nama_produk']; ?></h3>
+                    <h2 class="price">$<?php echo number_format($row['harga'], 2); ?></h2>
+                    <a href="#" class="buy">Buy Now</a>
+                </div>
+            </div>
+            <?php
+            $currentCard++;
+        }
+
+        while ($currentCard < $totalCards) {
+            ?>
+            <div class="card3">
+                <div class="imgBox">
+                    <img src="asset/placeholder.png" alt="No Product">
+                </div>
+                <div class="contentBox">
+                    <h3>N/A</h3>
+                    <h2 class="price">No Data</h2>
+                    <a href="#" class="buy">Not Available</a>
+                </div>
+            </div>
+            <?php
+            $currentCard++;
+        }
+        ?>
+    </div>
