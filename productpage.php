@@ -1,6 +1,7 @@
 <?php
     session_start();
     require 'functions.php';
+    checkLogin();
 
     if (!isset($_GET['id'])) {
         header("Location: index.php");

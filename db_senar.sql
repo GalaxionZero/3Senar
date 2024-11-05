@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 30, 2024 at 03:41 AM
+-- Host: 127.0.0.1:3307
+-- Generation Time: Nov 04, 2024 at 01:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_senar`
 --
+CREATE DATABASE IF NOT EXISTS `db_senar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `db_senar`;
 
 -- --------------------------------------------------------
 
@@ -29,47 +31,64 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `stok` int(11) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `foto` varchar(255) NOT NULL
+  `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `nama`, `harga`, `stok`, `deskripsi`, `foto`) VALUES
-(4, 'Guitar Electric REVSTAR', 6900000, 4, 'Gitar Revstar original diluncurkan pada tahun 2015—seri gitar elektrik baru yang pertama dari kami dalam lebih dari satu dekade. Lineup yang benar-benar baru diperkenalkan pada tahun 2022.\r\n\r\nGaya Revstar terinspirasi oleh motor café racer—mesin berperforma tinggi dengan penampilan sederhana yang disesuaikan untuk mencerminkan kepribadian pengendaranya.\r\n\r\nRevstar menyeimbangkan inovasi Jepang dan craftmanship tradisional. Fitur modern meningkatkan playability, versatility, dan tone, sedangkan desainnya mengacu pada gitar elektrik klasik Yamaha dari tahun 1966.\r\n\r\n\" ', '2024-10-29 03.34.31.webp'),
-(5, 'Guitar Electric L Series', 10200000, 2, 'Yamaha L Series yang baru menawarkan kombinasi sempurna antara tradisional dan modern: nada hangat dan seimbang yang sangat cocok dengan pertunjukan solo atau mix; keelokan abadi terinspirasi oleh keterampilan pembuatan gitar selama 50 tahun yang dimiliki Yamaha; kenyamanan bermain instan; performa yang siap ditampilkan di panggung sebagai standar dengan sistem pickup Zero Impact yang baru dari Yamaha.\r\n\r\nA.R.E. (Acoustic Resonance Enhancement)\r\nA.R.E. (Acoustic Resonance Enhancement) adalah teknologi pembentukan ulang kayu orisinal yang dikembangkan oleh Yamaha. Melalui pengontrolan suhu, kelembapan, dan tekanan atmosfer yang presisi, sifat molekuler kayu dapat dimanipulasi menjadi kondisi yang lebih ideal secara akustik, mirip dengan karakteristik molekuler kayu dalam alat musik yang sudah dimainkan selama bertahun-tahun.\" ', '2024-10-29 03.56.27.webp'),
-(8, 'Grand Piano CFX', 2147483647, 1, 'Filosofi desain CFX: “Konsep Unibodi”\r\nBagaimana Anda membuat alat musik yang tidak menyisakan ruang antara apa yang ingin disampaikan oleh pianis dan apa yang mereka dengar? Dimana setiap nada, warna halus, dan nuansa diekspresikan seperti yang dibayangkan? Dimana tidak ada sedikit pun gairah yang hilang dalam terjemahan dari jari, ke tuts, hammer, soundboard, dan resonansi mengisi aula konser? Dan suara murni mengalir dengan mudah dari seniman ke piano ke penonton? Ini adalah visi dari CFX.\r\n\r\nDibentuk oleh seniman untuk seniman\r\nMembuat konser megah agar terasa penyambung ekspresi Anda tidak terjadi dalam satu malam. Dibutuhkan seluruh perusahaan yang berdedikasi untuk suara selama lebih dari satu abad. Perusahaan yang berkomitmen pada inovasi agar seniman dapat mengekspresikan diri sepenuhnya. Sementara teknologi canggih dapat membantu menciptakan piano yang luar biasa, tetapi teknologi tersebut tidak dapat menggantikan telinga, mata, tangan, dan hati dari sang seniman. Hal tersebut tidak mengukur perasaan Anda ketika menekan not, atau menjelaskan mengapa nada tertentu membuat Anda merinding. CFX secara terus menerus dibentuk oleh umpan balik dari pianis terkemuka di dunia. Bukan hanya konser yang diimpikan oleh para seniman besar. Ini adalah piano yang mereka bantu untuk wujudkan.\r\n\r\nDua alat paling canggih dalam pembuatan piano\r\nPabrik Yamaha di Kakegawa, Jepang, telah mendapatkan reputasi sebagai level tertinggi dalam pembuatan piano. Tetapi di dalam sudut pabrik ini ada tempat yang lebih luar biasa. Workshop Concert Piano, tempat pengrajin ahli paling terampil kami membuat piano sepenuhnya dengan tangan. Para pengrajin ini telah belajar dari generasi pengrajin sebelumnya. Dilatih untuk mengevaluasi bahan-bahan alami yang hidup dan bernapas. Diajarkan untuk memilih kayu yang layak untuk dibuat menjadi CFX. Tukang kayu ahli yang telah membentuk soundboard, rim dan back post untuk panggung paling terkenal. Pengrajin ahli yang secara intuitif memahami keseimbangan antara presisi absolut dan sentuhan manusia. Teknisi yang telah memberikan pendapat dan mengatur concert grand untuk kompetisi bergengsi. Ini adalah upaya gabungan dari para pengrajin yang menciptakan produk unggulan yang unik. Saat memainkan CFX, Anda akan menyadari bahwa keputusan ini berada di tangan yang sangat mahir.', '2024-10-29 05.32.34.jpg');
+INSERT INTO `products` (`id`, `nama`) VALUES
+(2, 'test'),
+(3, 'gitar'),
+(4, 'gitar asu');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchase_history`
+-- Table structure for table `product_details`
 --
 
-CREATE TABLE `purchase_history` (
-  `id_purchase` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `total_amount` decimal(10,2) NOT NULL
+CREATE TABLE `product_details` (
+  `id_product` int(11) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `harga` decimal(12,2) NOT NULL,
+  `kategori` varchar(40) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_details`
+--
+
+INSERT INTO `product_details` (`id_product`, `stok`, `harga`, `kategori`, `deskripsi`, `foto`) VALUES
+(2, 12, 123.00, 'gitar', 'test', '672858c1924f4.png'),
+(3, 1, 11234.00, 'gitar', 'test', '67285c1c3fcf4.png'),
+(4, 123, 123413.00, 'piano', 'test', '67285e77b1731.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stores`
+--
+
+CREATE TABLE `stores` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_tlp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `purchase_items`
+-- Table structure for table `store_products`
 --
 
-CREATE TABLE `purchase_items` (
-  `id` int(11) NOT NULL,
-  `id_order` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `harga` decimal(10,2) NOT NULL
+CREATE TABLE `store_products` (
+  `id_toko` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -82,22 +101,17 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `admin` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `user_data`
+-- Dumping data for table `users`
 --
 
-CREATE TABLE `user_data` (
-  `id_user` int(11) NOT NULL,
-  `alamat` text NOT NULL,
-  `no_tlp` int(13) NOT NULL,
-  `kode_pos` int(5) NOT NULL,
-  `tgl_lhr` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `admin`) VALUES
+(1, 'admin', 'admin@admin.com', '$2y$10$a2U.WAiVZ7x1wYelVaurcOtwGR60VFtaOM.Brqj4zB2Cr5rucpJRK', 1),
+(2, 'test', 'test@g', '$2y$10$qd96K8ToXlgGzbBPlDNM3efgI8Dve9oC/YsnH6FC6FsEwHLA9aqx2', NULL);
 
 --
 -- Indexes for dumped tables
@@ -110,31 +124,31 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `purchase_history`
+-- Indexes for table `product_details`
 --
-ALTER TABLE `purchase_history`
-  ADD PRIMARY KEY (`id_purchase`),
-  ADD KEY `id_user` (`id_user`);
+ALTER TABLE `product_details`
+  ADD UNIQUE KEY `id_product` (`id_product`),
+  ADD KEY `id_product_2` (`id_product`);
 
 --
--- Indexes for table `purchase_items`
+-- Indexes for table `stores`
 --
-ALTER TABLE `purchase_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_id_order_history` (`id_order`),
-  ADD KEY `fk_id_order_products` (`id_product`);
+ALTER TABLE `stores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `store_products`
+--
+ALTER TABLE `store_products`
+  ADD KEY `id_toko` (`id_toko`,`id_produk`),
+  ADD KEY `fk_id_produk` (`id_produk`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_data`
---
-ALTER TABLE `user_data`
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`,`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -144,48 +158,36 @@ ALTER TABLE `user_data`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `purchase_history`
+-- AUTO_INCREMENT for table `stores`
 --
-ALTER TABLE `purchase_history`
-  MODIFY `id_purchase` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `purchase_items`
---
-ALTER TABLE `purchase_items`
+ALTER TABLE `stores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `purchase_history`
+-- Constraints for table `product_details`
 --
-ALTER TABLE `purchase_history`
-  ADD CONSTRAINT `fk_id_user_purchase` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+ALTER TABLE `product_details`
+  ADD CONSTRAINT `fk_id_products` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `purchase_items`
+-- Constraints for table `store_products`
 --
-ALTER TABLE `purchase_items`
-  ADD CONSTRAINT `fk_id_order_history` FOREIGN KEY (`id_order`) REFERENCES `purchase_history` (`id_purchase`),
-  ADD CONSTRAINT `fk_id_order_products` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`);
-
---
--- Constraints for table `user_data`
---
-ALTER TABLE `user_data`
-  ADD CONSTRAINT `fk_id_user_data` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+ALTER TABLE `store_products`
+  ADD CONSTRAINT `fk_id_produk` FOREIGN KEY (`id_produk`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `fk_id_toko` FOREIGN KEY (`id_toko`) REFERENCES `stores` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

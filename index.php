@@ -35,37 +35,37 @@
             <div class="content-grid">
                 <div class="content-box">
                     <img src="assets/pac311.jpg" alt="Content 1"/>
-                    <a href="#" class="title-box">
+                    <a href="search.php?search-input=gitar" class="title-box">
                         <h2>Cari perlengkapan gitar disini!</h2>
                     </a>
                 </div>
                 <div class="content-box">
                     <img src="assets/panini2.jpg" alt="Content 2"/>
-                    <a href="#" class="title-box">
+                    <a href="search.php?search-input=piano" class="title-box">
                         <h2>Cari perlengkapan piano disini!</h2>
                     </a>
                 </div>
                 <div class="content-box">
                     <img src="assets/drummer.jpg" alt="Content 3"/>
-                    <a href="#" class="title-box">
+                    <a href="search.php?search-input=drum" class="title-box">
                         <h2>Cari perlengkapan drum disini!</h2>
                     </a>
                 </div>
                 <div class="content-box">
                     <img src="assets/Vibraphones.jpg" alt="Content 4"/>
-                    <a href="#" class="title-box">
+                    <a href="search.php?search-input=perkusi" class="title-box">
                         <h2>Cari perlengkapan perkusi disini!</h2>
                     </a>
                 </div>
                 <div class="content-box">
                     <img src="assets/earphone.png" alt="Content 5"/>
-                    <a href="#" class="title-box">
+                    <a href="search.php?search-input=earphone" class="title-box">
                         <h2>Cari earphone disini!</h2>
                     </a>
                 </div>
                 <div class="content-box">
                     <img src="assets/audio.png" alt="Content 6"/>
-                    <a href="#" class="title-box">
+                    <a href="search.php?search-input=audio" class="title-box">
                         <h2>Cari perlengkapan audio disini!</h2>
                     </a>
                 </div>

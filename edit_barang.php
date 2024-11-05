@@ -2,6 +2,7 @@
     require 'functions.php';
     $id = $_GET['id'];
     $conn = connection();
+    checkLogin();
 
     if (isset($_POST['tambah'])){
         $data['nama'] = $_POST['nama'];

@@ -1,6 +1,7 @@
 <?php
     session_start();
     require 'functions.php';
+    checkLogin();
 
     $searchQuery = isset($_GET['search-input']) ? $_GET['search-input'] : '';
 

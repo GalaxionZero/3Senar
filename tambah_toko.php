@@ -1,27 +1,28 @@
 <?php
-require 'koneksi.php';
+    require 'koneksi.php';
 
-if (isset($_POST['tambah'])) {
-    $nama = $_POST['nama'];
-    $alamat = $_POST['alamat'];
-    $no_tlp = $_POST['no_tlp'];
+    if (isset($_POST['tambah'])) {
+        $nama = $_POST['nama'];
+        $alamat = $_POST['alamat'];
+        $no_tlp = $_POST['no_tlp'];
 
-    $query = "INSERT INTO stores (nama, alamat, no_tlp) VALUES ('$nama', '$alamat', '$no_tlp')";
-    $result = mysqli_query($conn, $query);
+        $query = "INSERT INTO stores (nama, alamat, no_tlp) VALUES ('$nama', '$alamat', '$no_tlp')";
+        $result = mysqli_query($conn, $query);
 
-    if ($result) {
-        echo "<script>
-        alert('Data berhasil ditambahkan');
-        document.location.href = 'admin_list_barang.php';
-        </script>";
-    } else {
-        echo "<script>
-        alert('Data gagal ditambahkan');
-        document.location.href = 'tambah_barang.php';
-        </script>";
+        if ($result) {
+            echo "<script>
+            alert('Data berhasil ditambahkan');
+            document.location.href = 'admin_list_barang.php';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Data gagal ditambahkan');
+            document.location.href = 'tambah_barang.php';
+            </script>";
+        }
     }
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

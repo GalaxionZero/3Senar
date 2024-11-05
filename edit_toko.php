@@ -1,5 +1,6 @@
 <?php
     require 'functions.php';
+    checkLogin();
 
     $id = $_GET['id'];
     $query = "SELECT * FROM stores WHERE id = $id";

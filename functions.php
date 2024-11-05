@@ -50,30 +50,11 @@
         }
     }
 
-    function logout(){
-        session_start();
-        session_unset();
-        session_destroy();
-        header("Location: login.php");
-        exit;
-    }
-
-    function checkSession(){
-        session_start();
-        if(isset($_SESSION['email'])){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function checkLogin(){
         session_start();
-        if(isset($_SESSION['email'])){
-            header("Location: profile.php");
+        if(!isset($_SESSION['login'])){
+            header("Location: login.php");
             exit;
-        } else {
-            return false;
         }
     }
 
@@ -220,4 +201,16 @@
             return false;
         }
     }
+
+    function deleteToko($id){
+        $conn = connection();
+        $query = "DELETE FROM stores WHERE id = $id";
+        if(mysqli_query($conn, $query)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 ?>

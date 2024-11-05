@@ -2,15 +2,17 @@
     session_start();
     require 'functions.php';
 
-    $_SESSION['login'] = true;
-
-
+    
     if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
         $data['username'] = $_POST['username'];
         $data['email'] = $_POST['email'];
         $data['password'] = $_POST['password'];
-
+        
         if (login($data)){
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['email'] = $data['email'];
+            $_SESSION['password'] = $data['password'];
+            $_SESSION['login'] = true;
             echo "<script>
             alert('Login Berhasil');
             document.location.href = 'index.php';
