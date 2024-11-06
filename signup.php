@@ -7,6 +7,13 @@
         $data['password'] = $_POST['password'];
         $data['confirm_password'] = $_POST['confirm_password'];
 
+        if (strlen($data['password']) < 8) {
+            echo "<script>
+            alert('Password harus terdiri dari minimal 8 karakter');
+            document.location.href = 'signup.php';
+            </script>";
+        }
+
         if ($data['password'] != $data['confirm_password']) {
             echo "<script>
             alert('Konfirmasi Password Salah');

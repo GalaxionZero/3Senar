@@ -1,6 +1,8 @@
 <?php
     require 'functions.php';
+    session_start();
     checkLogin();
+    checkAdmin();
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];

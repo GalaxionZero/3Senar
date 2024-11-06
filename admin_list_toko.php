@@ -1,5 +1,9 @@
 <?php
     require 'koneksi.php';
+    require 'functions.php';
+    session_start();
+    checkLogin();
+    checkAdmin();
 
     $query = "SELECT * FROM stores ORDER BY id DESC";
     $result = mysqli_query($conn, $query);
@@ -36,7 +40,7 @@
         <div class="admin-container">
             <h1>Data Toko</h1>
             <div class="container">
-                <a href="tambah_store.php">
+                <a href="tambah_toko.php">
                     <button class="tambah">
                         <p>Tambah Toko Baru</p>
                     </button>
@@ -72,12 +76,12 @@
                             <td><?php echo $store['no_tlp']; ?></td>
                             <td>
                                 <div class="button-container">
-                                    <a href="edit_store.php?id=<?php echo $store['id']; ?>">
+                                    <a href="edit_toko.php?id=<?php echo $store['id']; ?>">
                                         <button class="edit-btn">
                                             <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
                                         </button>
                                     </a>
-                                    <a href="delete_store.php?id=<?php echo $store['id']; ?>" onclick="return confirm('Yakin untuk menghapus toko ini?')">
+                                    <a href="delete_toko.php?id=<?php echo $store['id']; ?>" onclick="return confirm('Yakin untuk menghapus toko ini?')">
                                         <button class="delete-btn">
                                             <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
                                         </button>

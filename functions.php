@@ -51,9 +51,15 @@
     }
 
     function checkLogin(){
-        session_start();
         if(!isset($_SESSION['login'])){
             header("Location: login.php");
+            exit;
+        }
+    }
+
+    function checkAdmin(){
+        if(isset($_SESSION['admin' != 1])){
+            header("Location: index.php");
             exit;
         }
     }
@@ -120,7 +126,7 @@
 
     function tampilProduk(){
         $conn = connection();
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM products JOIN product_details ON products.id = product_details.id_product";
         $result = mysqli_query($conn, $query);
         $data = [];
         while($row = mysqli_fetch_assoc($result)){

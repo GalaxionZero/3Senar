@@ -1,7 +1,6 @@
 <?php 
     session_start();
     require 'functions.php';
-
     
     if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
         $data['username'] = $_POST['username'];
@@ -12,6 +11,7 @@
             $_SESSION['username'] = $data['username'];
             $_SESSION['email'] = $data['email'];
             $_SESSION['password'] = $data['password'];
+            $_SESSION['admin'] = $data['admin'];
             $_SESSION['login'] = true;
             echo "<script>
             alert('Login Berhasil');

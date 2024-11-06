@@ -1,5 +1,9 @@
 <?php
     require 'koneksi.php';
+    require 'functions.php';
+    session_start();
+    checkLogin();
+    checkAdmin();
 
     if (isset($_POST['tambah'])) {
         $nama = $_POST['nama'];
@@ -12,12 +16,12 @@
         if ($result) {
             echo "<script>
             alert('Data berhasil ditambahkan');
-            document.location.href = 'admin_list_barang.php';
+            document.location.href = 'admin_list_toko.php';
             </script>";
         } else {
             echo "<script>
             alert('Data gagal ditambahkan');
-            document.location.href = 'tambah_barang.php';
+            document.location.href = 'tambah_toko.php';
             </script>";
         }
     }

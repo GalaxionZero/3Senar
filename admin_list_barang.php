@@ -1,5 +1,8 @@
 <?php
     require 'functions.php';
+    session_start();
+    checkLogin();
+    checkAdmin();
 
     // if(!checkSession()){
     //     header("Location: login.php");
@@ -8,6 +11,7 @@
 
     $conn = connection();
     $list_products = tampilProduk();
+    
 ?>
 
 <!DOCTYPE html>

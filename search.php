@@ -51,5 +51,5 @@
     </main>
     <?php require("footer.php")?>
     <script src="scripts/script.js"></script> 
-</body>
+</body> 
 </html>

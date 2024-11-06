@@ -1,8 +1,13 @@
 <?php
+    session_start();
     require 'functions.php';
+    checkLogin();
+    checkAdmin();
+    
     $id = $_GET['id'];
     $conn = connection();
-    checkLogin();
+
+    $products = tampilProdukById($id)[0];
 
     if (isset($_POST['tambah'])){
         $data['nama'] = $_POST['nama'];
@@ -55,10 +60,10 @@
                     <textarea id="stok" name="stok" required><?php echo htmlspecialchars($products['stok']); ?></textarea><br>
 
                     <label for="deskripsi">deskripsi</label><br>
-                    <textarea id="deskripsi" name="deskripsi" required><?php echo htmlspecialchars($products['deskripsi']); ?>" </textarea><br>
+                    <textarea id="deskripsi" name="deskripsi" required><?php echo htmlspecialchars($products['deskripsi']); ?></textarea><br>
                     
                     <label for="kategori">kategori</label><br>
-                    <textarea id="kategori" name="kategori" required><?php echo htmlspecialchars($products['deskripsi']); ?>" </textarea><br>
+                    <textarea id="kategori" name="kategori" required><?php echo htmlspecialchars($products['deskripsi']); ?></textarea><br>
 
                     <label for="foto">Foto</label><br>
                     <input type="hidden" name="oldimg" value="<?php echo htmlspecialchars($products['foto']); ?>">

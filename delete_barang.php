@@ -1,5 +1,8 @@
 <?php
     require 'functions.php';
+    session_start();
+    checkLogin();
+    checkAdmin();
     $conn = connection();
 
     if (isset($_GET['id'])) {

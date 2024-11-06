@@ -1,6 +1,9 @@
 <?php
+    session_start();
     require 'functions.php';
     checkLogin();
+    checkAdmin();
+    $conn = connection();
 
     $id = $_GET['id'];
     $query = "SELECT * FROM stores WHERE id = $id";
