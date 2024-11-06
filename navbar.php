@@ -30,11 +30,6 @@
             </a>
         </li>
         <li class="navbar-item">
-            <a href="start_review.php" class="navbar-item">
-                Ingin tahu?
-            </a>
-        </li>
-        <li class="navbar-item">
             <a href="about_me.html" id="aboutMeLink" class="navbar-item">
                 About Me
             </a>

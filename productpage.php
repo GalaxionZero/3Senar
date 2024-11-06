@@ -24,8 +24,7 @@
 </head>
 <body>
 <!--Navbar-->
-<?php include("navbar.php")
-?>
+<?php include("navbar.php")?>
 
 <div class="container">
         <div class="imgBx">
