@@ -10,6 +10,8 @@
         $id = $_GET['id'];
         $data = tampilProdukById($id);
     }
+
+    $dataToko = tampilToko();
 ?>
 
 <!DOCTYPE html>
@@ -46,26 +48,19 @@
                 <h2>Lokasi Toko<br>
                 </h2>
                 <br>
-            <ul>
-                <li class="jalan" onclick="showLocation('Mt Haryono, Jakarta')">Jl. MT Haryono, Balikpapan</li>
-                <br>
-                <li class="jalan">Jalan placeholder</li>
-                <br>
-                <li class="jalan">Jalan placeholder</li>
-                <br>
-            </ul>
-            <div id="mapcontainer">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8872446056325!2d116.87282571085557!3d-1.2378328987451517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df146c2e2cab5e5%3A0x96bafdf1508f79de!2sYamaha%20Music%20School%20Doremi%20(Ruko%20Balikpapan%20Super%20Blok)!5e0!3m2!1sen!2sid!4v1730506316140!5m2!1sen!2sid" 
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+
+                <?php foreach ($dataToko as $toko)?>
+                <button class="accordion"><?php echo $toko['nama']?></button>
+                <div class="panel">
+                    <p>Alamat: <?php echo $toko['alamat']?></p>
+                    <p>No. Telepon: <?php echo $toko['no_tlp']?></p>
+                </div>
             </div>
         </div>
     </div>
 
-
     <!--Footer-->
-<?php require("footer.php")
-?>
-<script src="scripts/script.js"></script> 
+    <?php require("footer.php")?>
+    <script src="scripts/script.js"></script> 
 </body>
 </html>

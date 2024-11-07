@@ -265,7 +265,7 @@ footer {
       border-bottom: solid 2px;
       
       position: absolute;
-      bottom: 0; left:20px;
+      left:20px;
       
       transition: all .5s;
     }
@@ -282,7 +282,7 @@ footer {
 }
 
 .cart {
-    font-size: 12px;
+    font-size: 20px;
     opacity: 0;
     letter-spacing: 1px;
     font-family: 'Roboto', sans-serif;
@@ -290,12 +290,7 @@ footer {
     transition: all 0.7s;
     color: white;
     text-decoration: none;
-    i {
-      font-size: 16px;
-    }
-    span {
-      margin-left: 10px;
-    }
+    padding: 30px
   }
   
 .container:hover .overlay {
@@ -305,7 +300,7 @@ footer {
     }
     
     & hr {
-    bottom: 44%;
+    bottom: 24%;
     width: 100px;
     transition-delay: 0.4s;
     }
