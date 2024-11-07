@@ -1,0 +1,70 @@
+/* Reset and Basic Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+
+/* Admin Menu Container */
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    margin: 40px auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Title and Description */
+.admin-menu h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.admin-menu p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Button Container and Styles */
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.button-container button {
+    padding: 12px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #3e8e41;
+    transform: scale(1.05);
+}
+
