@@ -30,8 +30,8 @@
             </a>
         </li>
         <li class="navbar-item">
-            <a href="about_me.html" id="aboutMeLink" class="navbar-item">
-                About Me
+            <a href="about_us.html" id="aboutMeLink" class="navbar-item">
+                About Us
             </a>
         </li>
         <div class="navbar-login">
