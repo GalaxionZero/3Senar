@@ -40,7 +40,7 @@ aboutMeLink.addEventListener('click', function(event) {
     event.preventDefault();
     var userConfirmation = confirm('Apakah Anda ingin melanjutkan ke halaman About Me?');
     if (userConfirmation) {
-        window.location.href = 'about_me.html';
+        window.location.href = 'about_us.html';
     } 
     else {
         alert('Anda tetap berada di halaman ini.');

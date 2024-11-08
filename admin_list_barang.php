@@ -37,7 +37,7 @@
                         <p>Tambah Barang</p>
                     </button>
                 </a>
-                <a href="index.php">
+                <a href="menu_admin.php">
                     <button class="back">
                         <p>Kembali</p>
                     </button>
