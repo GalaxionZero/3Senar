@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_senar`
 --
-CREATE DATABASE IF NOT EXISTS `db_senar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `db_senar`;
+-- CREATE DATABASE IF NOT EXISTS `db_senar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+-- USE `db_senar`;	
 
 -- --------------------------------------------------------
 
@@ -40,8 +40,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `nama`) VALUES
 (2, 'test'),
-(3, 'gitar'),
-(4, 'gitar asu');
+(3, 'gitar');
 
 -- --------------------------------------------------------
 
@@ -64,9 +63,7 @@ CREATE TABLE `product_details` (
 
 INSERT INTO `product_details` (`id_product`, `stok`, `harga`, `kategori`, `deskripsi`, `foto`) VALUES
 (2, 12, 123.00, 'gitar', 'test', '672858c1924f4.png'),
-(3, 1, 11234.00, 'gitar', 'test', '67285c1c3fcf4.png'),
-(4, 123, 123413.00, 'piano', 'test', '67285e77b1731.png');
-
+(3, 1, 11234.00, 'gitar', 'test', '67285c1c3fcf4.png');
 -- --------------------------------------------------------
 
 --

@@ -63,7 +63,7 @@
                     <textarea id="deskripsi" name="deskripsi" required><?php echo htmlspecialchars($products['deskripsi']); ?></textarea><br>
                     
                     <label for="kategori">kategori</label><br>
-                    <textarea id="kategori" name="kategori" required><?php echo htmlspecialchars($products['deskripsi']); ?></textarea><br>
+                    <textarea id="kategori" name="kategori" required><?php echo htmlspecialchars($products['kategori']); ?></textarea><br>
 
                     <label for="foto">Foto</label><br>
                     <input type="hidden" name="oldimg" value="<?php echo htmlspecialchars($products['foto']); ?>">

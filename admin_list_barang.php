@@ -4,14 +4,18 @@
     checkLogin();
     checkAdmin();
 
-    // if(!checkSession()){
-    //     header("Location: login.php");
-    //     exit;
-    // }
-
     $conn = connection();
     $list_products = tampilProduk();
-    
+
+    if (isset($_POST['search'])){
+        $keyword = $_POST['keyword'];
+        $list_products = tampilProdukByName($keyword);
+    }
+
+    if (isset($_POST['keyword'])){
+        $keyword = $_POST['keyword'];
+        $list_products = tampilProdukByName($keyword);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +28,6 @@
     <link rel="stylesheet" href="style/admin_list-barang.css">
 </head>
 <body>
-    <!-- <?php include("navbar.php") ?> -->
     <div class="background">
         <div class="admin-container">
             <h1>List Product</h1>

@@ -8,15 +8,23 @@
         $data['password'] = $_POST['password'];
         
         if (login($data)){
-            $_SESSION['username'] = $data['username'];
-            $_SESSION['email'] = $data['email'];
-            $_SESSION['password'] = $data['password'];
-            $_SESSION['admin'] = $data['admin'];
-            $_SESSION['login'] = true;
-            echo "<script>
-            alert('Login Berhasil');
-            document.location.href = 'index.php';
-            </script>";
+            if ($_SESSION['admin'] == 1){
+                $_SESSION['login'] = true;
+
+                echo "<script>
+                alert('Login Berhasil');
+                document.location.href = 'menu_admin.php';
+                </script>";
+                exit;
+            } else {
+                $_SESSION['login'] = true;
+
+                echo "<script>
+                alert('Login Berhasil');
+                document.location.href = 'index.php';
+                </script>";
+                exit;
+            }
         } else {
             echo "<script>
             alert('Login Gagal');
@@ -25,6 +33,7 @@
         }
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

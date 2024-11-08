@@ -1,3 +1,7 @@
+<style>
+    
+</style>
+
 <footer class="footer-section">
     <div class="footer-container">
         <div class="footer-item">

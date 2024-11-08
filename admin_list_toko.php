@@ -23,6 +23,17 @@
             $list_stores[] = $row;
         }
     }
+
+    if (isset($_POST["search"])) {
+        $keyword = $_POST["keyword"];
+        
+        $sql = mysqli_query($conn, "SELECT * FROM stores WHERE nama LIKE '%$keyword%' ");
+        
+        $list_stores = [];
+        while ($row = mysqli_fetch_assoc($sql)) {
+            $list_stores[] = $row;
+        }
+    }
 ?>
 
 

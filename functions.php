@@ -41,6 +41,7 @@
                 $_SESSION['email'] = $data['email'];
                 $_SESSION['password'] = $data['password'];
                 $_SESSION['username'] = $data['username'];
+                $_SESSION['admin'] = $data['admin'];
                 return true;
             } else {
                 return false;

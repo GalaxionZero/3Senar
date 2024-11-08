@@ -43,18 +43,24 @@
                 <h3><?php echo htmlspecialchars($data[0]['harga'])?></h3>
             </div>
         </div>
+        
         <div class="container2">
             <div class="locations">
                 <h2>Lokasi Toko<br>
                 </h2>
                 <br>
 
-                <?php foreach ($dataToko as $toko)?>
-                <button class="accordion"><?php echo $toko['nama']?></button>
-                <div class="panel">
-                    <p>Alamat: <?php echo $toko['alamat']?></p>
-                    <p>No. Telepon: <?php echo $toko['no_tlp']?></p>
-                </div>
+                <?php if (empty($dataToko)): ?>
+                    <p>Tidak ada data.</p>
+                <?php else: ?>
+                    <?php foreach ($dataToko as $toko)?>
+                    <button class="accordion"><?php echo $toko['nama']?></button>
+
+                    <div class="panel">
+                        <p>Alamat: <?php echo $toko['alamat']?></p>
+                        <p>No. Telepon: <?php echo $toko['no_tlp']?></p>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

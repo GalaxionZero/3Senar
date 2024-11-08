@@ -219,7 +219,7 @@ footer {
     box-sizing: border-box;
     padding: 40px;
     z-index: 2;
-    background-color: white;
+    background-color: transparent;
     box-shadow: #000;
 }
 
@@ -254,18 +254,11 @@ footer {
     float: left;
 }
 
-@media (max-width: 1366px) {
-    /* Product */
-    .container {
-        padding-left: 4rem;
-        margin: 50px 240px;
-    }
-}
-
 @media (max-width: 640px) {
     /* Product */
     .container {
-        margin: 50px 1px;
+        margin: 50px 35px;
+        max-width: 90vw;
     }
 
     .container .details {
@@ -273,14 +266,15 @@ footer {
     }
 
     .container .details p {
-        width: 40%;
+        width: 90%;
+        text-align: center;
         height: 100%;
         box-sizing: border-box;
     }
 
     .container .imgBx {
         justify-content: left;
-        right: 8rem;
+        right: 1rem;
     }
     
     .container .details h2{
@@ -414,13 +408,28 @@ ul li a:hover {
 
 /* White/Dark Mode */
 
-body.dark {background-color: #292c35;} 
+body.dark {
+    background-color: #292c35;
+} 
 
-.details.dark {
-    background-color: rgb(25, 25, 25);
+body.dark .container {
+    background-color: transparent; /* Keep the container background transparent */
 }
 
-body.dark h1, body.dark .support a {color: #fff;}
+body.dark .container .details {
+    background-color: #292c35; /* Sets details container background to black */
+    color: #fff; /* Sets text color to white */
+}
+
+body.dark .container .details p {
+    color: #fff;
+}
+
+body.dark .container .details h2 {
+    color: #fff;
+}
+
+body.dark h2, body.dark .support a {color: #fff;}
 
 .checkbox {
   opacity: 0;
@@ -479,11 +488,16 @@ body.dark h1, body.dark .support a {color: #fff;}
         bottom: 20px;
         right: 20px;
     }
-}
 
-@media (max-width: 1024px) {
-    .content-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .footer-section {
+        margin-top: calc(2vh - 10% - 40px);
+        padding: 20px;
+        text-align: center;
+    }
+
+    body {
+        overflow: hidden; 
+        overflow-y: scroll;
     }
 }
 
@@ -502,7 +516,7 @@ body.dark h1, body.dark .support a {color: #fff;}
     }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1366px) {
     .container {
         height: auto;
     }
@@ -513,6 +527,7 @@ body.dark h1, body.dark .support a {color: #fff;}
         height: auto;
         text-align: center;
         overflow: hidden;
+        ;
     }
     .container .imgBx img {
         left: initial;
